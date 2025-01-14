@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Mvc;
 using DATA_BASE_CONNECTION_ASP.NET.Models;  // Make sure to use the correct namespace
+using System.Collections.Generic;  // For List<T>
 
 public class ProductController : Controller
 {
@@ -25,10 +26,9 @@ public class ProductController : Controller
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = "INSERT INTO information (id, Name, Price) VALUES (@id,@Name, @Price)";
+                    string query = "INSERT INTO information (Id,Name, Price) VALUES (@Id,@Name, @Price)";
                     SqlCommand cmd = new SqlCommand(query, conn);
-
-                    cmd.Parameters.AddWithValue("@id", product.Name);  // Bind Name parameter
+                    cmd.Parameters.AddWithValue("@Id", product.Id);
                     cmd.Parameters.AddWithValue("@Name", product.Name);  // Bind Name parameter
                     cmd.Parameters.AddWithValue("@Price", product.Price);  // Bind Price parameter
 
@@ -48,5 +48,33 @@ public class ProductController : Controller
         }
 
         return View(product);  // Return the view with validation errors
+    }
+
+    // GET: Product/Index
+
+    public ActionResult Index()
+    {
+        var products = new List<Product>();
+
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            string query = "SELECT Id, Name, Price FROM information";
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                products.Add(new Product
+                {
+                    Id = Convert.ToInt32(reader["Id"]),
+                    Name = reader["Name"].ToString(),
+                    Price = Convert.ToDecimal(reader["Price"])
+                });
+            }
+            conn.Close();
+        }
+
+        return View(products);
     }
 }

@@ -7,6 +7,10 @@
     @Html.AntiForgeryToken() <!-- CSRF protection -->
 
     <div class="form-group">
+        @Html.LabelFor(model => model.Id)
+        @Html.TextBoxFor(model => model.Id, new { @class = "form-control" })  <!-- Add Bootstrap for styling -->
+    </div>
+    <div class="form-group">
         @Html.LabelFor(model => model.Name)
         @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })  <!-- Add Bootstrap for styling -->
     </div>
