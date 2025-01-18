@@ -2,12 +2,13 @@
 
 <h2>Product List</h2>
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Actions</th> <!-- Add an Actions column for Edit/Delete -->
         </tr>
     </thead>
     <tbody>
@@ -17,6 +18,11 @@
                 <td>@item.Id</td>
                 <td>@item.Name</td>
                 <td>@item.Price</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("delete", "delete", new { id = item.Id }, new { @class = "btn btn-primary" })
+                   
+                </td>
             </tr>
         }
     </tbody>
