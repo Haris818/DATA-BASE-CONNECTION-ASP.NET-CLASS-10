@@ -1,23 +1,180 @@
 ﻿@model DATA_BASE_CONNECTION_ASP.NET.Models.Product
 
-<h2>Edit Product</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+        .container {
+            background-color: #ffffff;
+            padding: 4vw 5vw;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            width: 80vw;
+            max-width: 600px;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Name)
-        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Name)
+        h2 {
+            text-align: center;
+            color: #1abc9c;
+            font-size: 5vw;
+            margin-bottom: 3vh;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 3vw;
+            position: relative;
+            width: 100%;
+        }
+
+        label {
+            font-size: 1.5vw;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 1.5vw;
+        }
+
+        input.form-control {
+            width: 100%;
+            padding: 2vw 3vw;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.5vw;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+            input.form-control:focus {
+                border-color: #1abc9c;
+                background-color: #fff;
+                box-shadow: 0 0 8px rgba(26, 188, 156, 0.3);
+                transform: scale(1.03);
+            }
+
+        .form-group .field-validation-error {
+            color: #e74c3c;
+            font-size: 1.2vw;
+            position: absolute;
+            top: 100%;
+            left: 0;
+        }
+
+        button {
+            padding: 2vw 4vw;
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 2vw;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 3vw;
+        }
+
+            button:hover {
+                background-color: #16a085;
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            }
+
+        /* Making both buttons the same size */
+        .btn-secondary {
+            background-color: #ecf0f1;
+            color: #333;
+            font-size: 2vw;
+            padding: 2vw 4vw; /* Same size as the 'Save' button */
+            width: 100%; /* Make it the same width as the Save button */
+            text-align: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            margin-top: 2vw;
+        }
+
+            .btn-secondary:hover {
+                background-color: #bdc3c7;
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            }
+
+        /* Fluid layout with viewport units */
+        .container {
+            width: 80vw; /* Scales with viewport width */
+            padding: 4vw 5vw; /* Responsive padding */
+            max-width: 600px; /* Max width for large screens */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            font-size: 5vw; /* Scales the title based on the viewport width */
+        }
+
+        .form-group label {
+            font-size: 1.5vw; /* Label scales with viewport width */
+        }
+
+        input.form-control {
+            font-size: 1.5vw; /* Input text size scales based on the viewport */
+            padding: 2vw 3vw;
+        }
+
+        button, .btn-secondary {
+            font-size: 2vw; /* Button text size scales with viewport width */
+            padding: 2vw 4vw;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Edit Product</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name)
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price)
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+
+            <button type="submit">Save</button>
+
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+        }
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Price)
-        @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Price)
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save</button>
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
-}
+</body>
+</html>
