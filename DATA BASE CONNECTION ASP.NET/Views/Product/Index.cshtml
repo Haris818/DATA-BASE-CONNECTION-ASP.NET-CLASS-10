@@ -125,9 +125,33 @@
             padding: 1vw 2vw;
             font-size: 2vw;
         }
+
+        /* Logout Button */
+        .logout-btn {
+            position: absolute;
+            top: 2vh;
+            right: 2vw;
+            padding: 1vw 2vw;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.8vw;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+            .logout-btn:hover {
+                background-color: #0056b3;
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
     </style>
 </head>
 <body>
+    <!-- Logout Button -->
+    <a href="@Url.Action("Logout", "Product")" class="logout-btn">Logout</a>
+
     <h2 class="page-title">Product List</h2>
 
     <div class="table-container">
@@ -149,7 +173,7 @@
                         <td>@item.Price</td>
                         <td class="actions">
                             @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-edit" })
-                            @Html.ActionLink("Delete", "delete", new { id = item.Id }, new { @class = "btn btn-delete" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-delete" })
                         </td>
                     </tr>
                 }

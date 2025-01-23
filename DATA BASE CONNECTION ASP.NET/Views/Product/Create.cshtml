@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Product</title>
     <style>
-        /* Global Styles */
+        
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f9f9f9;
@@ -40,18 +40,18 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            position: relative; /* Make it relative for pseudo-element positioning */
-            transition: all 0.3s ease; /* Smooth transition for all changes */
+            position: relative; 
+            transition: all 0.3s ease; 
         }
 
-            /* Hover effect */
+            
             h2:hover {
-                color: #1abc9c; /* Change color on hover */
-                transform: scale(1.05); /* Slightly scale the text */
-                letter-spacing: 2px; /* Expand the letter spacing on hover */
+                color: #1abc9c; 
+                transform: scale(1.05); 
+                letter-spacing: 2px;
             }
 
-            /* Adding underline animation using pseudo-element */
+          /
             h2::before {
                 content: '';
                 position: absolute;
@@ -64,7 +64,7 @@
             }
 
             h2:hover::before {
-                width: 100%; /* Expand underline on hover */
+                width: 100%; 
             }
 
 
@@ -125,7 +125,7 @@
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             }
 
-        /* Error message styling */
+        
         .alert {
             padding: 1.2vw;
             background-color: #e74c3c;
@@ -141,31 +141,31 @@
             background-color: #e74c3c;
         }
 
-        /* Scaling layout with viewport units */
+        
         .container {
-            width: 90vw; /* Scales based on viewport width */
-            padding: 2vw 4vw; /* Responsive padding */
-            max-width: 500px; /* Max width for large screens */
+            width: 90vw; 
+            padding: 2vw 4vw; 
+            max-width: 500px; 
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         h2 {
-            font-size: 4vw; /* Scales the title based on the viewport width */
+            font-size: 4vw; 
         }
 
         .form-group label {
-            font-size: 1.2vw; /* Label scales with viewport width */
+            font-size: 1.2vw; /
         }
 
         input.form-control {
-            font-size: 1.3vw; /* Input text size scales based on the viewport */
+            font-size: 1.3vw; 
             padding: 1.8vw 2.5vw;
         }
 
         button {
-            font-size: 1.5vw; /* Button text size scales with viewport width */
+            font-size: 1.5vw; 
             padding: 1.5vw 3vw;
         }
     </style>
@@ -177,21 +177,21 @@
 
         @using (Html.BeginForm(FormMethod.Post))
         {
-            @Html.AntiForgeryToken() <!-- CSRF protection -->
+            @Html.AntiForgeryToken() 
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Id)
-                @Html.TextBoxFor(model => model.Id, new { @class = "form-control" })  <!-- Add Bootstrap for styling -->
+                @Html.TextBoxFor(model => model.Id, new { @class = "form-control" })  
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Name)
-                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })  <!-- Add Bootstrap for styling -->
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })  
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Price)
-                @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })  <!-- Add Bootstrap for styling -->
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })  
             </div>
 
             <button type="submit">Save</button>

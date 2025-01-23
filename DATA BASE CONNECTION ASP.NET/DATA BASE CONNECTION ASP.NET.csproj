@@ -99,6 +99,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +113,8 @@
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\DeleteConfirmed.cshtml" />
     <Content Include="Views\Product\Delete123.cshtml" />
+    <Content Include="Views\Product\Login.cshtml" />
+    <Content Include="Views\Product\Signup.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
