@@ -1,0 +1,209 @@
+﻿@model DATA_BASE_CONNECTION_ASP.NET.Models.Product
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product</title>
+    <style>
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 2vw 4vw;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 90vw;
+            max-width: 500px;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            text-align: center;
+            color: black;
+            font-size: 4vw;
+            margin-bottom: 2vh;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative; 
+            transition: all 0.3s ease; 
+        }
+
+            
+            h2:hover {
+                color: #1abc9c; 
+                transform: scale(1.05); 
+                letter-spacing: 2px;
+            }
+
+          /
+            h2::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: #1abc9c;
+                transition: width 0.3s ease-in-out;
+            }
+
+            h2:hover::before {
+                width: 100%; 
+            }
+
+
+        .form-group {
+            margin-bottom: 2.5vw;
+            position: relative;
+            width: 100%;
+        }
+
+        label {
+            font-size: 1.2vw;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 1.2vw;
+        }
+
+        input.form-control {
+            width: 100%;
+            padding: 1.8vw 2.5vw;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1.3vw;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+            input.form-control:focus {
+                border-color: #1abc9c;
+                background-color: #fff;
+                box-shadow: 0 0 8px rgba(26, 188, 156, 0.3);
+                transform: scale(1.02);
+            }
+
+        .form-group .field-validation-error {
+            color: #e74c3c;
+            font-size: 1.2vw;
+            position: absolute;
+            top: 100%;
+            left: 0;
+        }
+
+        button {
+            padding: 1.5vw 3vw;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.5vw;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 2.5vw;
+        }
+
+            button:hover {
+                background-color: #16a085;
+                transform: translateY(-3px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            }
+
+        
+        .alert {
+            padding: 1.2vw;
+            background-color: #e74c3c;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 1.2vw;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 2.5vw;
+        }
+
+        .alert-danger {
+            background-color: #e74c3c;
+        }
+
+        
+        .container {
+            width: 90vw; 
+            padding: 2vw 4vw; 
+            max-width: 500px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            font-size: 4vw; 
+        }
+
+        .form-group label {
+            font-size: 1.2vw; /
+        }
+
+        input.form-control {
+            font-size: 1.3vw; 
+            padding: 1.8vw 2.5vw;
+        }
+
+        button {
+            font-size: 1.5vw; 
+            padding: 1.5vw 3vw;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Create Product</h2>
+
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+            @Html.AntiForgeryToken() 
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Id)
+                @Html.TextBoxFor(model => model.Id, new { @class = "form-control" })  
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name)
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })  
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price)
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })  
+            </div>
+
+            <button type="submit">Save</button>
+        }
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+    </div>
+
+</body>
+</html>

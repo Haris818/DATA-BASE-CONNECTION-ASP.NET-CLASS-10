@@ -1,0 +1,184 @@
+﻿@model IEnumerable<DATA_BASE_CONNECTION_ASP.NET.Models.Product>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-top: 4vw;
+            font-size: 5vw;
+            color: #2c3e50;
+            text-transform: uppercase;
+        }
+
+        /* Table Container */
+        .table-container {
+            width: 80vw;
+            margin: 5vh auto;
+            overflow-x: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 2vw 3vw;
+            text-align: left;
+            font-size: 2vw;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        /* Row Hover Effect */
+        .table-row {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+            .table-row:hover {
+                background-color: #f7f7f7;
+                transform: translateX(5px);
+            }
+
+        /* Styling for Action Buttons */
+        .actions {
+            display: flex;
+            gap: 2vw;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1vw 2vw;
+            border-radius: 5px;
+            font-size: 1.8vw;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-edit {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+            .btn-edit:hover {
+                background-color: #45a049;
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+        .btn-delete {
+            background-color: #f44336;
+            color: white;
+        }
+
+            .btn-delete:hover {
+                background-color: #e53935;
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+        /* Striped Table Effect */
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive Design with Viewport-based Units */
+        .table-container {
+            max-width: 90vw;
+            padding: 2vw;
+        }
+
+        table {
+            font-size: 2vw;
+        }
+
+        th, td {
+            padding: 2vw 4vw;
+        }
+
+        .page-title {
+            font-size: 5vw;
+            margin-top: 5vh;
+        }
+
+        .btn {
+            padding: 1vw 2vw;
+            font-size: 2vw;
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            position: absolute;
+            top: 2vh;
+            right: 2vw;
+            padding: 1vw 2vw;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.8vw;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+            .logout-btn:hover {
+                background-color: #0056b3;
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+    </style>
+</head>
+<body>
+    <!-- Logout Button -->
+    <a href="@Url.Action("Logout", "Product")" class="logout-btn">Logout</a>
+
+    <h2 class="page-title">Product List</h2>
+
+    <div class="table-container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="table-row">
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td class="actions">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-edit" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-delete" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
